@@ -1,4 +1,4 @@
-name: Playlist-Generator workflow
+name: playlist-sports workflow
 
 on:
   schedule:
