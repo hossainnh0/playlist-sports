@@ -28,19 +28,17 @@ class DaddyHD(BaseService):
             channel_id = channel_slug[FIRST_INDEX:LAST_INDEX]
             channel_name = channel_div.text.strip()
 
-            if "18+" in channel_name:
-                continue
-
-            channels_data.append({
-                "name": channel_name,
-                "logo": "",
-                "group": "DaddyHD",
-                "stream-url": config_data.get("endpoint").replace("STREAM-ID", channel_id),
-                "headers": {
-                    "referer": config_data.get("referer"),
-                    "user-agent": self.USER_AGENT
-                }
-            })
+            if "18" not in channel_name:  # Exclude 18+ channels
+                channels_data.append({
+                    "name": channel_name,
+                    "logo": "",
+                    "group": "DaddyHD",
+                    "stream-url": config_data.get("endpoint").replace("STREAM-ID", channel_id),
+                    "headers": {
+                        "referer": config_data.get("referer"),
+                        "user-agent": self.USER_AGENT
+                    }
+                })
 
         return channels_data
 
